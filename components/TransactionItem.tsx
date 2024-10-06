@@ -22,6 +22,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
   return (
     <li className={transaction.amount > 0 ? 'plus' : 'minus'}>
       {transaction.text}
+      &nbsp;
       <span>
         {transaction.amount > 0 ? '+' : '-'}${addCommas(Math.abs(transaction.amount))}
       </span>

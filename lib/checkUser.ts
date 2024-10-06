@@ -1,9 +1,9 @@
-import { currentUser } from '@clerk/nextjs/server';
+import { currentUser, User } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
 
-export async function checkUser() {
-  const user = await currentUser();
-  
+export async function checkUser(user: User | null) {
+  if (!user) user = await currentUser();
+
   if (!user) {
     return null;
   }
@@ -13,7 +13,6 @@ export async function checkUser() {
       clerkUserId: user.id,
     },
   });
-
   if (loggedInUser)
   {
     return loggedInUser;
