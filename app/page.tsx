@@ -14,7 +14,7 @@ const HomePage = async () => {
   await checkUser(user);
   return (
     <>
-      <h2>Welcome, {user.firstName}</h2>
+      <h2 className="welcome">Welcome, {user.firstName}</h2>
       <Balance />
       <IncomeExpense />
       <AddTransaction />

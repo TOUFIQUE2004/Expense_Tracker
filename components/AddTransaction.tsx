@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import addTransaction from '@/app/actions/addTransaction';
 import { toast } from 'react-toastify';
 
-const AddTransaction = () => {
+const AddTransaction = (): JSX.Element => {
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -18,7 +18,7 @@ const AddTransaction = () => {
   };
 
   return (
-    <>
+    <div className="add-transaction">
       <h3>Add Transaction</h3>
       <form ref={formRef} action={clientAction}>
         <div className="form-control">
@@ -35,7 +35,7 @@ const AddTransaction = () => {
           Add Transaction
         </button>
       </form>
-    </>
+    </div>
   );
 };
 
