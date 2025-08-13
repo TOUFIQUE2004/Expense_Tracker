@@ -1,7 +1,7 @@
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL") // Prisma Accelerate for runtime
-  directUrl = env("DIRECT_URL") // Direct Postgres for CLI commands
+  directUrl = env("DIRECT_URL")   // Direct Postgres for CLI commands
 }
 
 generator client {

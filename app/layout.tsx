@@ -11,7 +11,7 @@ const roboto = Roboto({
   subsets: ['latin'],
 });
 export const metadata: Metadata = {
-  title: 'Expense Tracker',
+  title: 'Expo Track',
   description: 'Expense Tracker',
 };
 
