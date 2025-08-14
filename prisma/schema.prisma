@@ -20,14 +20,15 @@ model User {
 }
 
 model Transaction {
-  id        String   @id @default(uuid())
-  text      String
-  amount    Float
-  userId    String
+  id             String   @id @default(uuid())
+  text           String
+  amount         Float
+  userId         String
+  classification String?  // New field for categorizing transactions
   // Either keep this pointing to clerkUserId or switch to id if that's your PK
-  user      User     @relation(fields: [userId], references: [clerkUserId], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [clerkUserId], onDelete: Cascade)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   @@index([userId])
 }

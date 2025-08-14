@@ -17,6 +17,7 @@ CREATE TABLE "Transaction" (
     "text" TEXT NOT NULL,
     "amount" DOUBLE PRECISION NOT NULL,
     "userId" TEXT NOT NULL,
+    "classification" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

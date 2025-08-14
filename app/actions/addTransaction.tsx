@@ -6,6 +6,7 @@ import { db } from '@/lib/db';
 interface transactionData {
   text: string;
   amount: number;
+  classification?: string;
 }
 
 interface transactionResult {
@@ -16,6 +17,7 @@ interface transactionResult {
 async function addTransaction(formData: FormData): Promise<transactionResult> {
   const textValue = formData.get('text');
   const amountValue = formData.get('amount');
+  const classificationValue = formData.get('classification');
 
   if (!textValue || textValue === '' || !amountValue) {
     return { error: 'Please add a text and amount' };
@@ -23,6 +25,7 @@ async function addTransaction(formData: FormData): Promise<transactionResult> {
 
   const text: string = textValue.toString();
   const amount: number = parseFloat(amountValue.toString());
+  const classification: string = classificationValue ? classificationValue.toString() : 'Other';
 
   const { userId } = auth();
 
@@ -36,6 +39,7 @@ async function addTransaction(formData: FormData): Promise<transactionResult> {
       data: {
         text,
         amount,
+        // classification, // Uncomment when database schema is updated
         userId,
       },
     });

@@ -1,16 +1,37 @@
-:root {
-  /* Color Palette */
-  --color-primary: #4f46e5; /* Indigo */
-  --color-secondary: #818cf8; /* Light Indigo */
-  --color-accent: #f59e0b; /* Amber */
-  --color-accent-dark: #d97706; /* Darkened Amber */
-  --color-background: #f3f4f6; /* Light Gray */
-  --color-text: #111827; /* Dark Gray */
-  --color-white: #ffffff;
-  --color-success: #10b981;
-  --color-error: #ef4444;
-  --color-error-dark: #dc2626; /* Darkened Error */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+:root {
+  /* Primary Theme Colors */
+  --color-primary: #5a3eec; /* Vibrant Violet */
+  --color-primary-light: #7e65f2; /* Lighter Violet */
+  --color-primary-dark: #4a2fd6; /* Darker Violet */
+  
+  /* Secondary Colors */
+  --color-secondary: #8c6ff0; /* Light Violet */
+  --color-secondary-light: #a88ff5;
+  --color-secondary-dark: #6e4ed9;
+  
+  /* Accent Colors */
+  --color-accent: #ff6b6b; /* Coral Red */
+  --color-accent-light: #ff8c8c;
+  --color-accent-dark: #e55050;
+  
+  /* Variant Colors */
+  --color-info: #3b82f6; /* Blue */
+  --color-info-light: #60a5fa;
+  --color-warning: #f59e0b; /* Amber */
+  --color-warning-light: #fbbf24;
+  
+  /* Background & Text */
+  --color-background: #f4f6f8; /* Soft warm gray */
+  --color-background-alt: #eef0f4; /* Slightly darker for sections */
+  --color-surface: #ffffff; /* Cards, modals */
+  --color-text: #1f2937; /* Deep Gray */
+  --color-text-light: #4b5563;
+  --color-white: #ffffff;
+  
   /* Typography */
   --font-family-base: 'Inter', sans-serif;
   --font-size-base: 16px;
@@ -18,27 +39,28 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-
+  
   /* Spacing */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
   --spacing-xl: 32px;
-
+  
   /* Border Radius */
   --border-radius: 8px;
+  
+  /* Shadows */
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+  --box-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.1);
 
-  /* Box Shadow */
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --box-shadow-hover: 0 6px 8px rgba(0, 0, 0, 0.15);
+  /* Footer Colors */
+  --color-footer-bg: var(--color-primary); /* Link footer to primary color */
+  --color-footer-text: var(--color-white);
+  --color-footer-text-light: var(--color-primary-light);
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -49,60 +71,75 @@ body {
   line-height: 1.6;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0 0 var(--spacing-sm) 0;
-  font-weight: var(--font-weight-bold);
-}
+h1, h2, h3, h4, h5, h6 { margin: 0 0 var(--spacing-sm) 0; font-weight: var(--font-weight-bold); }
+p { margin: 0 0 var(--spacing-md) 0; }
 
-p {
-  margin: 0 0 var(--spacing-md) 0;
-}
+a { color: var(--color-white); text-decoration: none; }
+a:hover { text-decoration: none; }
 
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.container {
-  margin: var(--spacing-lg) auto;
-  padding: var(--spacing-md);
-  max-width: 1200px;
-}
+.container { margin: var(--spacing-lg) auto; padding: var(--spacing-md); max-width: 1200px; }
 
 /* Navbar Styles */
-.navbar {
-  background: var(--color-primary);
-  color: var(--color-white);
-  padding: var(--spacing-sm) var(--spacing-md);
-  box-shadow: var(--box-shadow);
+.navbar { background: #6d28d9; /* Tailwind purple-700 */ color: var(--color-white); padding: var(--spacing-sm) var(--spacing-md); box-shadow: var(--box-shadow); }
+.navbar-container { display: flex; align-items: center; gap: 1rem; }
+.navbar h1 { font-size: 1.5rem; font-weight: var(--font-weight-bold); }
+.navbar nav { display: flex; justify-content: center; gap: 1.25rem; } /* 20px */
+.navbar nav a { color: #fff; padding: 8px 12px; border-radius: 6px; }
+.navbar nav a:hover { background: rgba(0,0,0,0.15); }
+.navbar-right { display: flex; align-items: center; margin-left: auto; }
+
+/* Utility: consistent card box - make it strong so it can't be overridden */
+.box { 
+  background: var(--color-surface) !important; 
+  border-radius: var(--border-radius) !important; 
+  padding: 1.5rem !important; 
+  box-shadow: var(--box-shadow) !important; 
+  border: 1px solid #e5e7eb !important;
+  margin-bottom: 1rem !important;
+  text-align: center !important;
 }
 
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Colored box variants */
+.box-welcome { 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  border: none !important;
 }
 
-.navbar h2 {
-  font-size: 1.5rem;
-  font-weight: var(--font-weight-semibold);
+.box-balance { 
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+  color: white !important;
+  border: none !important;
 }
 
-.navbar-right {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+.box-charts { 
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.box-daily { 
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.box-add { 
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.box-import { 
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%) !important;
+  color: #333 !important;
+  border: none !important;
+}
+
+.box-transactions { 
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%) !important;
+  color: #333 !important;
+  border: none !important;
 }
 
 /* Button Styles */
@@ -121,7 +158,7 @@ button.primary {
 }
 
 button.primary:hover {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary-light);
   box-shadow: var(--box-shadow-hover);
 }
 
@@ -131,7 +168,7 @@ button.secondary {
 }
 
 button.secondary:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary-light);
   box-shadow: var(--box-shadow-hover);
 }
 
@@ -143,6 +180,25 @@ button.accent {
 button.accent:hover {
   background-color: var(--color-accent-dark);
   box-shadow: var(--box-shadow-hover);
+}
+
+/* Variant Buttons */
+button.info {
+  background-color: var(--color-info);
+  color: var(--color-white);
+}
+
+button.info:hover {
+  background-color: var(--color-info-light);
+}
+
+button.warning {
+  background-color: var(--color-warning);
+  color: var(--color-text);
+}
+
+button.warning:hover {
+  background-color: var(--color-warning-light);
 }
 
 /* Guest Styles */
@@ -161,7 +217,7 @@ button.accent:hover {
   margin-bottom: var(--spacing-md);
   display: flex;
   flex-direction: column;
-  max-width: 400px; /* Set a maximum width for inputs */
+  max-width: 400px;
   width: 100%;
 }
 
@@ -178,13 +234,13 @@ button.accent:hover {
   font-size: 1.1rem;
   font-weight: var(--font-weight-medium);
   transition: border-color 0.3s ease;
-  width: 100%; /* Ensure inputs take full width of their container */
+  width: 100%;
 }
 
 .form-control input:focus {
   border-color: var(--color-primary);
   outline: none;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  box-shadow: 0 0 0 2px rgba(90, 62, 236, 0.2);
 }
 
 /* Button Class */
@@ -199,7 +255,7 @@ button.accent:hover {
 }
 
 .btn:hover {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary-light);
   box-shadow: var(--box-shadow-hover);
 }
 
@@ -215,7 +271,7 @@ button.accent:hover {
 
 /* Income and Expense Container */
 .inc-exp-container {
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   box-shadow: var(--box-shadow);
   padding: var(--spacing-lg);
   display: flex;
@@ -260,7 +316,7 @@ button.accent:hover {
 }
 
 .list li {
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   box-shadow: var(--box-shadow);
   color: var(--color-text);
   display: flex;
@@ -271,7 +327,7 @@ button.accent:hover {
   border-left: 5px solid;
   border-radius: var(--border-radius);
   transition: transform 0.2s ease;
-  width: 100%;        /* Increased from 90% */
+  width: 100%;
   margin: var(--spacing-sm) auto;
   font-size: 1.2rem;
   font-weight: 700;
@@ -307,13 +363,13 @@ button.accent:hover {
 
 /* Add Transaction Styles */
 .add-transaction {
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   box-shadow: var(--box-shadow);
   padding: var(--spacing-lg);
   border-radius: var(--border-radius);
-  max-width: 400px; /* Reduced width for smaller inputs */
+  max-width: 400px;
   margin: var(--spacing-lg) auto;
-  text-align: center; /* Center the form */
+  text-align: center;
 }
 
 .add-transaction h3 {
@@ -327,7 +383,7 @@ button.accent:hover {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  align-items: center; /* Center the form controls */
+  align-items: center;
 }
 
 /* Header (Welcoming and Balance) Styles */
@@ -351,14 +407,13 @@ button.accent:hover {
 .transaction-list {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers the transaction list horizontally */
-  margin: 0 auto; /* Centers the container if it has a fixed width */
+  align-items: center;
+  margin: 0 auto;
   width: 50%;
 }
 
 .welcome {
-  text-align: center; /* Centers text within the welcome class */
-  /* If you need to center the entire welcome component, consider using Flexbox */
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -367,7 +422,7 @@ button.accent:hover {
 .balance {
   font-size: 1.5rem;
   font-weight: var(--font-weight-semibold);
-  text-align: center; /* Ensure the balance is centered */
+  text-align: center;
 }
 
 /* Media Queries for Responsiveness */
@@ -386,9 +441,9 @@ button.accent:hover {
     max-width: 90%;
     display: flex;
     justify-content: space-around;
-    align-items: center; /* Centers items vertically */
+    align-items: center;
   }
-  
+
   .separator {
     border-left: 1px solid #dedede;
     height: 40px;
@@ -409,7 +464,6 @@ button.accent:hover {
     max-width: 90%;
   }
 
-  /* Header Adjustments for Mobile */
   .header {
     padding: var(--spacing-md);
     max-width: 90%;
