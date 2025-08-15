@@ -1,0 +1,8 @@
+[build]
+  command = "npx prisma generate --no-engine && next build"
+  publish = ".next"
+  environment = { NODE_VERSION = "18" }
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
