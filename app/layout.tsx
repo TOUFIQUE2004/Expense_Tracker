@@ -10,25 +10,26 @@ const roboto = Roboto({
   weight: ['400', '500', '700', '900'],
   subsets: ['latin'],
 });
+
 export const metadata: Metadata = {
   title: 'Expo Track',
   description: 'Expense Tracker',
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={`${roboto.className}`}>
-          <Header />
-          <main className="container">{children}</main>
-          <ToastContainer />
+      <ClerkProvider>
+        <html lang="en">
+        <body className={roboto.className}>
+        <Header />
+        <main className="container pt-20">{children}</main>
+        <ToastContainer />
         </body>
-      </html>
-    </ClerkProvider>
+        </html>
+      </ClerkProvider>
   );
 }

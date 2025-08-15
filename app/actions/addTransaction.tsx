@@ -6,7 +6,7 @@ import { db } from '@/lib/db';
 interface transactionData {
   text: string;
   amount: number;
-  classification?: string;
+  classification?: string | null;     // <--- updated
 }
 
 interface transactionResult {
@@ -29,7 +29,6 @@ async function addTransaction(formData: FormData): Promise<transactionResult> {
 
   const { userId } = auth();
 
-  // Check for user
   if (!userId) {
     return { error: 'User not found' };
   }
@@ -39,7 +38,7 @@ async function addTransaction(formData: FormData): Promise<transactionResult> {
       data: {
         text,
         amount,
-        // classification, // Uncomment when database schema is updated
+        // classification,  // Uncomment when database schema is updated
         userId,
       },
     });

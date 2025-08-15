@@ -25,16 +25,20 @@ const HomePage = async () => {
 
     // Fetch transactions from Prisma using clerkUserId
     const transactions: Transaction[] = await db.transaction.findMany({
-        where: { userId: user.id }, // This should be user.id (clerk user ID)
+        where: { userId: user.id },
         orderBy: { createdAt: "asc" },
     });
 
     return (
-        <div className="max-w-6xl mx-auto p-4 space-y-6">
+        <div className="max-w-6xl mx-auto p-4 space-y-6 pt-20">
             {/* Welcome */}
             <div id="welcome" className="box box-welcome">
-                <h2 className="text-3xl font-bold mb-4 text-center">Welcome, {user.firstName}!</h2>
-                <p className="text-lg text-center opacity-90">Track your expenses, analyze spending patterns, and take control of your finances</p>
+                <h2 className="text-3xl font-bold mb-4 text-center">
+                    Welcome, {user.firstName}!
+                </h2>
+                <p className="text-lg text-center opacity-90">
+                    Track your expenses, analyze spending patterns, and take control of your finances
+                </p>
             </div>
 
             {/* Balance */}
@@ -42,16 +46,17 @@ const HomePage = async () => {
                 <div className="box box-balance"><Balance /></div>
                 <div className="box box-balance"><IncomeExpense /></div>
             </div>
-            
+
             {/* Charts */}
             <div id="charts" className="box box-charts">
-                <h3 className="text-2xl font-bold mb-6 text-center">Charts</h3>
+                <h3 className="text-2xl font-bold mb-6 text-center">TRANSACTION_CHART</h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <ExpenseChart transactions={transactions} />
-                    <ExpensePieChart transactions={transactions} />
+                    <div className="h-[1000px] xl:h-[1000px] flex flex-col items-center justify-center">
+                        <ExpensePieChart transactions={transactions} />
+                    </div>
                 </div>
             </div>
-            
+
             {/* Daily Averages */}
             <div className="box box-daily">
                 <DailyAverages transactions={transactions} />
